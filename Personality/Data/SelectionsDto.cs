@@ -1,7 +1,10 @@
-﻿namespace Personality.Data
+﻿using Personality.Model;
+
+namespace Personality.Data
 {
     public class SelectionsDto
     {
-        public List<long> AnswerIds { get; set; }
+        public long Id { get; set; }
+        public AnswerDto Answer { get; set; }
     }
 }

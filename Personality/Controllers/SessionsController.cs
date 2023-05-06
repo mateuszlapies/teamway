@@ -13,6 +13,7 @@ namespace Personality.Controllers
         public SessionsController(DatabaseContext context)
         {
             this.context = context;
+            context.Database.EnsureCreated();
         }
 
         [HttpGet]
@@ -24,33 +25,40 @@ namespace Personality.Controllers
             }
 
             var session = context.Sessions
-                            .Include(i => i.Selections)
-                            .ThenInclude(i => i.Answer)
-                            .ThenInclude(i => i.Question)
-                            .Select(s => new SessionDto()
-                            {
-                                Id = s.Id,
-                                Selections = s.Selections
-                            })
-                            .Single(q => q.Id == sessionId);
-
-            session.Score = session.Selections.Sum(s => s.Answer.Value);
+                .Include(i => i.Selections)
+                .ThenInclude(i => i.Answer)
+                .ThenInclude(i => i.Question)
+                .Select(s => new SessionDto()
+                {
+                    Id = s.Id,
+                    Selections = s.Selections.Select(sel => new SelectionsDto()
+                    {
+                        Id = sel.Id,
+                        Answer = new AnswerDto()
+                        {
+                            Id = sel.Answer.Id,
+                            Text = sel.Answer.Text
+                        }
+                    }),
+                    Score = s.Selections.Sum(s => s.Answer.Value)
+                })
+                .Single(q => q.Id == sessionId);
 
             return session;
         }
 
         [HttpPut]
-        public SessionDto AddSession(SelectionsDto selectionsDto)
+        public SessionDto AddSession([FromBody] List<long> answerIds)
         {
-            if (selectionsDto.AnswerIds.Distinct().Count() != context.Questions.Count())
+            if (answerIds.Distinct().Count() != context.Questions.Count())
             {
                 throw new ValidationException("All questions need to have an answer!");
             }
 
             if (context.Questions
                 .Where(q => 
-                    q.Answers.Any(a => 
-                        selectionsDto.AnswerIds.Contains(a.Id)
+                    q.Answers.Any(a =>
+                        answerIds.Contains(a.Id)
                     ))
                 .Distinct()
                 .Count() != context.Questions.Count())
@@ -59,7 +67,7 @@ namespace Personality.Controllers
             }
 
             var session = context.Sessions.Add(new Session()).Entity;
-            var selections = selectionsDto.AnswerIds.Select(answerId => new Selection()
+            var selections = answerIds.Select(answerId => new Selection()
             {
                 AnswerId = answerId,
                 SessionId = session.Id
