@@ -1,0 +1,33 @@
+#root {
+    height: 100vh;
+}
+
+.box {
+    display: flex;
+    flex-flow: column;
+}
+
+.box .header {
+    flex: 0 1 auto
+}
+
+.box .content {
+    flex: 1 1 auto;
+}
+
+.vertical-middle {
+    vertical-align: middle;
+}
+
+.fill {
+    width: 100%;
+    height: 100%;
+}
+
+.fill-height {
+    height: 100%;
+}
+
+.fill-width {
+    width: 100%;
+}

@@ -6,7 +6,9 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Personality.Controllers
 {
-    public class SessionsController : Controller
+    [ApiController]
+    [Route("/backend/[controller]")]
+    public class SessionsController : ControllerBase
     {
         private readonly DatabaseContext context;
 

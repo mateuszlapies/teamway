@@ -6,7 +6,7 @@ using Personality.Model;
 namespace Personality.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("/backend/[controller]")]
     public class QuestionsController : ControllerBase
     {
         private readonly DatabaseContext context;
