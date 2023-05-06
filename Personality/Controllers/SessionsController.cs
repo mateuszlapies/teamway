@@ -6,17 +6,17 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Personality.Controllers
 {
-    public class SelectionsController : Controller
+    public class SessionsController : Controller
     {
         private readonly DatabaseContext context;
 
-        public SelectionsController(DatabaseContext context)
+        public SessionsController(DatabaseContext context)
         {
             this.context = context;
         }
 
         [HttpGet]
-        public SessionDto GetSelections(long sessionId)
+        public SessionDto GetSession(long sessionId)
         {
             if (!context.Sessions.Any(q => q.Id == sessionId))
             {
@@ -40,7 +40,7 @@ namespace Personality.Controllers
         }
 
         [HttpPut]
-        public SessionDto AddSelections(SelectionsDto selectionsDto)
+        public SessionDto AddSession(SelectionsDto selectionsDto)
         {
             if (selectionsDto.AnswerIds.Distinct().Count() != context.Questions.Count())
             {
