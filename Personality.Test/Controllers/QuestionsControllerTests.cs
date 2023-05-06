@@ -1,4 +1,4 @@
-﻿using Personality.Controllers.OData;
+﻿using Personality.Controllers;
 using Personality.Model;
 
 namespace Personality.Test.Controllers
