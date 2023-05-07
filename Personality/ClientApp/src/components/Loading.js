@@ -5,8 +5,9 @@ export default function Loading() {
     <div className="d-table fill">
       <div className="fill-height d-table-cell text-center vertical-middle">
         <Spinner
-          color="secondary"
           type="grow"
+          color="secondary"
+          className="status"
         >
           Loading...
         </Spinner>

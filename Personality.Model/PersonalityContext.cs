@@ -27,7 +27,7 @@ namespace Personality.Model
                 new Personality()
                 {
                     Id = 1,
-                    Title = "Introvert",
+                    Title = "an Introvert",
                     Description = introvertDescription,
                     Min = 0,
                     Max = 5
@@ -35,7 +35,7 @@ namespace Personality.Model
                 new Personality()
                 {
                     Id = 2,
-                    Title = "More of an Introvert",
+                    Title = "more of an Introvert",
                     Description = introvertDescription,
                     Min = 6,
                     Max = 9
@@ -43,14 +43,14 @@ namespace Personality.Model
                 new Personality()
                 {
                     Id = 3,
-                    Title = "Perfectly ballansed",                   
+                    Title = "perfectly ballansed",                   
                     Min = 10,
                     Max = 10
                 },
                 new Personality()
                 {
                     Id = 4,
-                    Title = "More of an Extrovert",
+                    Title = "more of an Extrovert",
                     Description = extrovertDescription,
                     Min = 11,
                     Max = 15
@@ -58,7 +58,7 @@ namespace Personality.Model
                 new Personality()
                 {
                     Id = 5,
-                    Title = "Extrovert",
+                    Title = "an Extrovert",
                     Description = extrovertDescription,
                     Min = 16,
                     Max = 20
@@ -227,7 +227,7 @@ namespace Personality.Model
                 new Answer()
                 {
                     Id = 17,
-                    Text = "Don’t dare show that you don’t know anything about the subjecte",
+                    Text = "Don’t dare show that you don’t know anything about the subject",
                     Value = 3,
                     QuestionId = 5
                 },

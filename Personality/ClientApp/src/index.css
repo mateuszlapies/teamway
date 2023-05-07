@@ -13,6 +13,7 @@
 
 .box .content {
     flex: 1 1 auto;
+    overflow: hidden;
 }
 
 .vertical-middle {
@@ -30,4 +31,58 @@
 
 .fill-width {
     width: 100%;
+}
+
+.status {
+    width: 5rem;
+    height: 5rem;
+}
+
+h1, h2, h3, p {
+    color: #1A1D24;
+}
+
+.navbar {
+    background-color: #E6694C;
+}
+
+.navbar-dark {
+    color: #FF8D80;
+}
+
+.btn-secondary {
+    border-color: #E6694C;
+    background-color: #E6694C;
+}
+
+.btn-secondary:hover, .btn-secondary:focus {
+    color: #E6694C;
+    border-color: #F9C8B0;
+    background-color: #F9C8B0;
+}
+
+.text-secondary {
+    color: #E6694C !important;
+}
+
+.card {
+    border-color: #FF8D80;
+}
+
+.card-header {
+    background-color: #F9C8B0;
+}
+
+.card-header p {
+    color: #cf5f44;
+}
+
+.form-check-input:checked {
+    background-color: #E6694C;
+    border-color: #E6694C;
+}
+
+.notifications {
+    right: 1rem;
+    bottom: 1rem;
 }

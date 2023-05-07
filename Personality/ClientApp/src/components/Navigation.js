@@ -9,7 +9,7 @@ export default function Navigation() {
   }
 
   return (
-    <Navbar container light expand>
+    <Navbar container dark expand>
       <NavbarBrand href="/">Personality Test</NavbarBrand>
       <NavbarToggler onClick={toggle} />
       <Collapse isOpen={!collapsed} navbar>
