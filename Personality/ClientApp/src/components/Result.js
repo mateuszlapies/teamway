@@ -26,7 +26,7 @@ export default function Result() {
       <div className="m-5">
         <Row>
           <Col>
-            <h2>Your result</h2>
+            <h2 className="text-center m-4">Your result</h2>
             <div className="m-3">
               <h3>{personality?.title}</h3>
               <p className="m-2 h6">{personality?.description}</p>
@@ -35,7 +35,7 @@ export default function Result() {
         </Row>
         <Row>
           <Col>
-            <h2>Your answers</h2>
+            <h2 className="text-center m-4">Your answers</h2>
             <div className="m-3">
               {session.selections.map((element, index) => (
                 <Card key={index} className="mb-3">
