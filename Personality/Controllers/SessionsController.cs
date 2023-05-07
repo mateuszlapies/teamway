@@ -49,7 +49,7 @@ namespace Personality.Controllers
                             }
                         }
                     })
-                    .OrderBy(o => o.Answer.Question.Id),
+                    .OrderBy(o => o.Answer.Question.Id).ToList(),
                     Score = s.Selections.Sum(s => s.Answer.Value)
                 })
                 .Single(q => q.Id == sessionId);
