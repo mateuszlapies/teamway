@@ -20,7 +20,7 @@ namespace Personality.Controllers
         [HttpGet]
         public IQueryable<QuestionDto> GetQuestions()
         {
-            return context.Questions.Include(i => i.Answers).Select(q => new QuestionDto()
+            return context.Questions.Include(i => i.Answers).OrderBy(o => o.Id).Select(q => new QuestionDto()
             {
                 Id = q.Id,
                 Text = q.Text,

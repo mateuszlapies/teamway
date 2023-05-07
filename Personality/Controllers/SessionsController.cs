@@ -48,7 +48,8 @@ namespace Personality.Controllers
                                 Text = sel.Answer.Question.Text
                             }
                         }
-                    }),
+                    })
+                    .OrderBy(o => o.Answer.Question.Id),
                     Score = s.Selections.Sum(s => s.Answer.Value)
                 })
                 .Single(q => q.Id == sessionId);
