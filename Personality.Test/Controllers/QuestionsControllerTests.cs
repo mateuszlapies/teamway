@@ -19,7 +19,7 @@ namespace Personality.Test.Controllers
         {
             var controller = new QuestionsController(context);
 
-            var result = controller.Get();
+            var result = controller.GetQuestions();
 
             Assert.That(result.Count(), Is.EqualTo(5));
             Assert.That(result.First().Answers.Count(), Is.EqualTo(4));

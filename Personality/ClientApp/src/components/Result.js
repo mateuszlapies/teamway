@@ -6,12 +6,20 @@ import Loading from "./Loading";
 
 export default function Result() {
   let [session, setSession] = useState()
+  let [personality, setPersonality] = useState()
   let {id} = useParams()
   
   useEffect(() => {
     backend.get("Sessions?sessionId=" + id)
       .then(r => setSession(r.data))
   }, [id])
+
+  useEffect(() => {
+    if (session) {
+      backend.get("Personalities?score=" + session.score)
+        .then(r => setPersonality(r.data))
+    }
+  }, [session])
 
   if (session) {
     return (
@@ -20,7 +28,8 @@ export default function Result() {
           <Col>
             <h2>Your result</h2>
             <div className="m-3">
-              
+              <h3>{personality?.title}</h3>
+              <p className="m-2 h6">{personality?.description}</p>
             </div>
           </Col>
         </Row>
@@ -31,10 +40,10 @@ export default function Result() {
               {session.selections.map((element, index) => (
                 <Card key={index} className="mb-3">
                   <CardHeader>
-                    <p className="h4">{index + 1 + ". " + element.answer.question.text}</p>
+                    <p className="h5">{index + 1 + ". " + element.answer.question.text}</p>
                   </CardHeader>
                   <CardBody>
-                    <p className="h5">{element.answer.text}</p>
+                    <p className="h6">{element.answer.text}</p>
                   </CardBody>
                 </Card>
               ))}

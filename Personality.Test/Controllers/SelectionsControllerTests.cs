@@ -21,7 +21,7 @@ namespace Personality.Test.Controllers
         {
             var controller = new SessionsController(context);
             var answerIds = new List<long>() { 1, 5, 9, 13, 17 };
-            var session = controller.AddSession(new SelectionsDto() { AnswerIds = answerIds });
+            var session = controller.AddSession(answerIds);
             
             var result = controller.GetSession(session.Id);
 
@@ -38,7 +38,7 @@ namespace Personality.Test.Controllers
 
             var answerIds = new List<long>() { 1, 5, 9, 13, 17 };
 
-            var result = controller.AddSession(new SelectionsDto() { AnswerIds = answerIds });
+            var result = controller.AddSession(answerIds);
 
             Assert.That(result.Id, Is.EqualTo(1));
         }
@@ -50,7 +50,7 @@ namespace Personality.Test.Controllers
 
             var answerIds = new List<long>() { 1 };
 
-            var result = Assert.Throws<ValidationException>(() => controller.AddSession(new SelectionsDto() { AnswerIds = answerIds }));
+            var result = Assert.Throws<ValidationException>(() => controller.AddSession(answerIds));
             Assert.That(result.Message, Is.EqualTo("All questions need to have an answer!"));
         }
 
@@ -61,7 +61,7 @@ namespace Personality.Test.Controllers
 
             var answerIds = new List<long>() { 1, 2, 9, 13, 17 };
 
-            var result = Assert.Throws<ValidationException>(() => controller.AddSession(new SelectionsDto() { AnswerIds = answerIds }));
+            var result = Assert.Throws<ValidationException>(() => controller.AddSession(answerIds));
             Assert.That(result.Message, Is.EqualTo("Each question can have only one answer!"));
         }
     }
