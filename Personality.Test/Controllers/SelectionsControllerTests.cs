@@ -7,12 +7,12 @@ namespace Personality.Test.Controllers
 {
     public class SelectionsControllerTests
     {
-        private DatabaseContext context;
+        private PersonalityContext context;
 
         [SetUp]
         public void SetUp()
         {
-            context = new DatabaseContext();
+            context = new PersonalityContext();
             context.Database.EnsureCreated();
         }
 

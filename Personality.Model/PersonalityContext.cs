@@ -1,8 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage;
 
 namespace Personality.Model
 {
-    public class DatabaseContext : DbContext
+    public class PersonalityContext : DbContext
     {
         public DbSet<Question> Questions { get; set; }
         public DbSet<Answer> Answers { get; set; }

@@ -4,12 +4,12 @@ namespace Personality.Test.Model
 {
     public class DatabaseContextTests
     {
-        private DatabaseContext context;
+        private PersonalityContext context;
 
         [SetUp]
         public void Setup()
         {
-            context = new DatabaseContext();
+            context = new PersonalityContext();
             context.Database.EnsureCreated();
         }
 
