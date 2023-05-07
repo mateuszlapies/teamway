@@ -19,7 +19,7 @@ export default function Test() {
   const onSubmit = (e) => {
     e.preventDefault()
     backend.put("Sessions", selections.map(element => element.answer))
-      .then(r => navigate("/result?id=" + r.data.id))
+      .then(r => navigate("/result/" + r.data.id))
   }
 
   const onChange = (e) => {
@@ -33,7 +33,7 @@ export default function Test() {
         {questions.map((question, index) => (
           <Card key={index} className="mb-3">
             <CardHeader>
-              <p className="h4">{question.text}</p>
+              <p className="h4">{index + 1 + ". " + question.text}</p>
             </CardHeader>
             <CardBody>
               {question.answers.map((answer, answerIndex) => (

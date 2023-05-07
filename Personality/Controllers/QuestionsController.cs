@@ -9,9 +9,9 @@ namespace Personality.Controllers
     [Route("/backend/[controller]")]
     public class QuestionsController : ControllerBase
     {
-        private readonly DatabaseContext context;
+        private readonly PersonalityContext context;
 
-        public QuestionsController(DatabaseContext context)
+        public QuestionsController(PersonalityContext context)
         {
             this.context = context;
             context.Database.EnsureCreated();

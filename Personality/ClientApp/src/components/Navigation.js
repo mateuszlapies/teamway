@@ -1,8 +1,7 @@
 import { useState } from 'react';
 import {Collapse, Nav, Navbar, NavbarBrand, NavbarToggler, NavItem, NavLink} from 'reactstrap';
 
-export default function Navigation()
-{
+export default function Navigation() {
   let [collapsed, setCollapsed] = useState(true);
 
   const toggle = () => {
@@ -17,6 +16,9 @@ export default function Navigation()
         <Nav navbar>
           <NavItem>
             <NavLink href="/">Home</NavLink>
+          </NavItem>
+          <NavItem>
+            <NavLink href="/test">Test</NavLink>
           </NavItem>
         </Nav>
       </Collapse>

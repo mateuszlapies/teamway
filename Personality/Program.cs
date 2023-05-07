@@ -2,7 +2,7 @@ using Personality.Model;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddDbContext<DatabaseContext>();
+builder.Services.AddDbContext<PersonalityContext>();
 
 builder.Services.AddControllersWithViews();
 

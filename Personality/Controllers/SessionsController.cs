@@ -10,9 +10,9 @@ namespace Personality.Controllers
     [Route("/backend/[controller]")]
     public class SessionsController : ControllerBase
     {
-        private readonly DatabaseContext context;
+        private readonly PersonalityContext context;
 
-        public SessionsController(DatabaseContext context)
+        public SessionsController(PersonalityContext context)
         {
             this.context = context;
             context.Database.EnsureCreated();
@@ -21,6 +21,8 @@ namespace Personality.Controllers
         [HttpGet]
         public SessionDto GetSession(long sessionId)
         {
+            var sessions = context.Sessions.ToList();
+
             if (!context.Sessions.Any(q => q.Id == sessionId))
             {
                 throw new ValidationException("This set of responses is not available!");
@@ -39,7 +41,12 @@ namespace Personality.Controllers
                         Answer = new AnswerDto()
                         {
                             Id = sel.Answer.Id,
-                            Text = sel.Answer.Text
+                            Text = sel.Answer.Text,
+                            Question = new QuestionDto()
+                            {
+                                Id = sel.Answer.Question.Id,
+                                Text = sel.Answer.Question.Text
+                            }
                         }
                     }),
                     Score = s.Selections.Sum(s => s.Answer.Value)
@@ -68,14 +75,16 @@ namespace Personality.Controllers
                 throw new ValidationException("Each question can have only one answer!");
             }
 
-            var session = context.Sessions.Add(new Session()).Entity;
-            var selections = answerIds.Select(answerId => new Selection()
+            var session = new Session()
             {
-                AnswerId = answerId,
-                SessionId = session.Id
-            });
-            context.Selections.AddRange(selections);
+                Selections = answerIds.Select(answerId => new Selection()
+                {
+                    AnswerId = answerId
+                }).ToList()
+            };
+            context.Sessions.Add(session);
             context.SaveChanges();
+
             return new SessionDto() { Id = session.Id };
         }
     }

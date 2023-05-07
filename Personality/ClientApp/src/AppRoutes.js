@@ -1,5 +1,6 @@
 import Home from "./components/Home";
 import Test from "./components/Test";
+import Result from "./components/Result";
 
 const AppRoutes = [
   {
@@ -11,7 +12,8 @@ const AppRoutes = [
     element: <Test />
   },
   {
-    path: '/result/:id'
+    path: '/result/:id',
+    element: <Result />
   }
 ];
 
