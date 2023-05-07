@@ -1,7 +1,8 @@
 import {useParams} from "react-router-dom";
 import {useEffect, useState} from "react";
 import backend from "../helper/Backend";
-import {Card, CardBody, CardHeader} from "reactstrap";
+import {Card, CardBody, CardHeader, Col, Row} from "reactstrap";
+import Loading from "./Loading";
 
 export default function Result() {
   let [session, setSession] = useState()
@@ -15,25 +16,34 @@ export default function Result() {
   if (session) {
     return (
       <div className="m-5">
-        <div className="text-center">
-          <h2>Your result: {session.score}</h2>
-        </div>
-        <div className="mt-5">
-          {session.selections.map((element, index) => (
-            <Card key={index} className="mb-3">
-              <CardHeader>
-                <p className="h4">{index + 1 + ". " + element.answer.question.text}</p>
-              </CardHeader>
-              <CardBody>
-                <p className="h5">{element.answer.text}</p>
-              </CardBody>
-            </Card>
-          ))}
-        </div>
+        <Row>
+          <Col>
+            <h2>Your result</h2>
+            <div className="m-3">
+              
+            </div>
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            <h2>Your answers</h2>
+            <div className="m-3">
+              {session.selections.map((element, index) => (
+                <Card key={index} className="mb-3">
+                  <CardHeader>
+                    <p className="h4">{index + 1 + ". " + element.answer.question.text}</p>
+                  </CardHeader>
+                  <CardBody>
+                    <p className="h5">{element.answer.text}</p>
+                  </CardBody>
+                </Card>
+              ))}
+            </div>
+          </Col>
+        </Row>
       </div>
     )
   } else {
-    return <></>
+    return <Loading />
   }
-
 }
