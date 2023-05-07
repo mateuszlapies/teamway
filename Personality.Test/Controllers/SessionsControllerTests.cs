@@ -1,11 +1,10 @@
 ﻿using Personality.Controllers;
-using Personality.Data;
 using Personality.Model;
 using System.ComponentModel.DataAnnotations;
 
 namespace Personality.Test.Controllers
 {
-    public class SelectionsControllerTests
+    public class SessionsControllerTests
     {
         private PersonalityContext context;
 
@@ -35,7 +34,6 @@ namespace Personality.Test.Controllers
         public void CreateNewSessionWithSelectionsTest()
         {
             var controller = new SessionsController(context);
-
             var answerIds = new List<long>() { 1, 5, 9, 13, 17 };
 
             var result = controller.AddSession(answerIds);
@@ -47,7 +45,6 @@ namespace Personality.Test.Controllers
         public void TooLittleAnswersProvidedValidationTest()
         {
             var controller = new SessionsController(context);
-
             var answerIds = new List<long>() { 1 };
 
             var result = Assert.Throws<ValidationException>(() => controller.AddSession(answerIds));
@@ -58,7 +55,6 @@ namespace Personality.Test.Controllers
         public void MultipleAnswersForSameQuestionValidationTest()
         {
             var controller = new SessionsController(context);
-
             var answerIds = new List<long>() { 1, 2, 9, 13, 17 };
 
             var result = Assert.Throws<ValidationException>(() => controller.AddSession(answerIds));
