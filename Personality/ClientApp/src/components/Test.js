@@ -26,8 +26,8 @@ export default function Test() {
   const onSubmit = (e) => {
     e.preventDefault()
     setProcessing(true)
-    addNotification(NotificationType.Processing, "Your responses are being saved...")
     if (validate()) {
+      addNotification(NotificationType.Processing, "Your responses are being saved...")
       backend.put("Sessions", selections.map(element => element.answer))
         .then(r => {
           addNotification(NotificationType.Info, "Your responses have been saved")
